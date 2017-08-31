@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.directive 自定义指令</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>vue.directive 自定义指令</h1>
+    <hr>
+    <div id="app">
+        <div v-jack-qiu="color">{{num}}</div>
+        <p><button @click="add">add</button></p>
+        <p><button onclick="unbind()">解绑</button></p>
+    </div>
+    <script type="text/javascript">
+        //  声明的时候new Vue 大写
+        // 自定义指令
+        //  跟ng一样 指令名驼峰 写的时候加Jack-qiu 
+        // ================= 这个有用多看看 ===================
+        // Vue.directive("jackQiu",function(el,binding){
+        //     //  el 是当前元素 <div>10</div>
+        //     console.log(el);
+        //     el.style="color:"+binding.value;
+        //     // binding是个对象
+        //     console.log(binding);
+        //     console.log(binding.name);
+        //     console.log(binding.value);
+        //     console.log(binding.expression);
+
+        // });
+        Vue.directive("jackQiu", {
+
+            bind: function (el,binding) {//被绑定
+                console.log('1 - bind');
+                el.style="color:"+binding.value;
+            },
+            inserted: function () {//绑定到节点
+                console.log('2 - inserted');
+            },
+            update: function () {//组件更新
+                console.log('3 - update');
+            },
+            componentUpdated: function () {//组件更新完成
+                console.log('4 - componentUpdated');
+            },
+            unbind: function () {//解绑
+                console.log('5 - unbind');
+            }
+        });
+        //  解绑 就不要这个$scope了 $destroy() 是vue提供的解绑直接用就行
+        //  解绑用js原声写方法 引用也是原声引用的onclick
+        function unbind() {
+            app.$destroy();
+        }
+        var app = new Vue({
+            // 作用域
+            el: "#app",
+            data: {
+                // 相当于$scope.message
+                num: 10,
+                color: 'green'
+            },
+            methods: {
+                add: function () {
+                    this.num++;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
