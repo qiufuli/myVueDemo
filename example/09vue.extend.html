@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.extend</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.extend扩展实例构造器</h1>
+    <hr>
+    <div id="author"></div>
+    <script type="text/javascript">
+        var authorExtend=Vue.extend({
+            template:'<p><a v-bind:href="authorURL">{{authorName}}</a></p>',
+            // 写data不能像写构造器里一样 {} 需要用function
+            data:function(){
+                return{
+                    authorName:'JackQiu',
+                    authorURL:'http://www.baidu.com'
+                }
+            }
+        });
+        // 所有的构造器都不能直接使用 需要调用 并且绑定到要执行的元素上 #id .class element ....
+        new authorExtend().$mount("#author");
+    </script>
+</body>
+
+</html>

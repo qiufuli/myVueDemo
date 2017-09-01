@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <hr>
+    <div id="app">
+        <qiu></qiu>
+        <panda></panda>
+    </div>
+    <div id="ppa">
+        <qiu></qiu>
+    </div>
+    <script type="text/javascript">
+        Vue.component('qiu', {
+            template: `<div style="color:red">我是全局的组件qiu 全局组件在任何构造器中都能使用但在构造器外就不行了</div>`
+        })
+
+        var app = new Vue({
+            // 作用域
+            el: "#app",
+            // 局部的组件要加上s 代表可以定义多个
+            components:{
+                'panda':{
+            template: `<div style="color:green">我是局部的组件panda 只能在独有的构造器中使用</div>`                    
+                }
+            }
+        });
+        var ppa = new Vue({
+            el: "#ppa"
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.set</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>vue.set</h1>
+    <hr>
+    <div id="app">
+        <!-- 数据绑定 -->
+        {{count}}
+        <ul>
+            <li v-for="item in arr">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <p><button onclick="add()">add</button></p>
+    <script type="text/javascript">
+        function add() {
+            // 第一个参数是数据对象
+            //  第二个是操作的数据 第三个是改变成
+            // Vue.set(outData,"count",2);
+            // 第二种方法
+            // app.count++;
+            // 第三种 对象
+            // outData.count++;
+            //  vue直接操作下标改变不了元素 所以vue.set ######
+            // app.arr[1]="ddd"
+            Vue.set(app.arr,1,"ddd") // √√√√√√√√√√√√√√√√√
+        }
+        // 知识点  在构造器外边生成数据能传给构造器
+        var outData = {
+            count: 1,
+            arr:['aaa','bbb','ccc']
+        }   
+        var app = new Vue({
+            el: "#app",
+            data: outData
+        });
+    </script>
+</body>
+
+</html>

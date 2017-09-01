@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template 制作模板</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>template 制作模板</h1>
+    <hr>
+    <div id="app">
+        <!-- 数据绑定 -->
+        {{message}}
+    </div>
+    <template id="dd2">
+        <h2 style="color:red">我是标签模板</h2>
+    </template>
+
+    <script type="x-template" id="dd3" src="">
+        <h2 style="color:red">我是script标签模板</h2>
+    </script>
+
+
+    <script type="text/javascript">
+        // template 的三种形式
+        // ======第一种 直接写在选项里 适合写小的模板 ========
+        // template:`<h2 style="color:red">我是选项模板</h2>`
+
+        // ======第二种 是用标签的形式template标签给个id 然后传到选项中========
+        //  <template id="dd2">
+        // <h2 style="color:red">我是标签模板</h2>
+        // </template>
+
+        // ======第三种 是script标签形式 注意type id 和src ========
+        // <script type="x-template" id="dd3" src="">
+        //<h2 style="color:red">我是script标签模板</h2>
+
+        var app = new Vue({
+            // 作用域
+            el: "#app",
+            data: {
+                // 相当于$scope.message
+                message: "hello world"
+            },
+            template: "#dd3"
+            // 用的是tab键上面那个波浪键 这是关键
+            // template:`<h2 style="color:red">我是选项模板</h2>`
+        });
+
+
+
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"aaa"
+            },
+            methods:{
+                add:function(){
+                    this.message = "bbbb"
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

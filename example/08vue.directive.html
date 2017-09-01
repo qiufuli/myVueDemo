@@ -35,9 +35,11 @@
         // });
         Vue.directive("jackQiu", {
 
-            bind: function (el,binding) {//被绑定
+            bind: function (el,binding,vnode) {//被绑定
                 console.log('1 - bind');
                 el.style="color:"+binding.value;
+                console.log(binding);
+                console.log(vnode);
             },
             inserted: function () {//绑定到节点
                 console.log('2 - inserted');

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <hr>
+    <div id="app">
+        <panda></panda>
+    </div>
+    <script type="text/javascript">
+        var city = {
+            template: `
+            <div style="color:green">
+            子组件放到父组件里(子组件在父组件上面声明)
+            </div>
+             `
+        }
+        var pandaComponent = {
+            template: `<div style="color:red">
+           <p> 构造器里面引用外部构造好的组件</p>
+           <city></city>
+            </div>`,
+            components: {
+                'city': city
+            }
+        }
+
+        var app = new Vue({
+            // 作用域
+            el: "#app",
+            components: {
+                'panda': pandaComponent,
+            }
+
+        });
+    </script>
+</body>
+
+</html>
