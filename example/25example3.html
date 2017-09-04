@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+    <h1>example methods3 $on</h1>
+    <hr>
+    <div id="app">
+        <p>{{num}}</p>
+        <button @click="add">add</button>
+
+    </div>
+    <p><button onclick="reduce()">reduce</button></p>
+    
+    <p><button onclick="reduceOnce()">reduceOnce</button></p>
+    <p><button onclick="off()">off</button></p>
+    <script type="text/javascript">
+        //  声明的时候new Vue 大写
+        var app = new Vue({
+            // 作用域
+            el: "#app",
+            data: {
+                num:1
+            },
+            //  挂载之前dom还没渲染 jq获取不到值 所以要放在挂载之后
+            // mounted: function () {
+            //     $("#app").html("挂载之后能识别dom所以jq要放在挂载之后执行")
+            // },
+            methods: {
+                add: function () {
+                    this.num++;
+                    console.log("在构造器外部调用add")
+                }
+            }
+        });
+        // app.add()
+
+        // 实例事件
+        app.$on('reduce',function(){
+            this.num--;
+        })
+        app.$once('reduceOnce',function(){
+            this.num--;
+        })
+        // 在构造器里面的方法可以app.add() 用￥on加的方法 需要用emit绑定
+        function reduce(){
+            app.$emit("reduce")
+        }
+        function reduceOnce(){
+            app.$emit('reduceOnce')
+        }
+        function off(){
+            app.$off('reduce')
+        }
+
+    </script>
+</body>
+
+</html>

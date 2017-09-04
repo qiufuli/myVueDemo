@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <hr>
+    <div id="app">
+        <!-- 数据绑定 -->
+        {{a}}
+        <!--  绑定的事件 如果有参数才加（） 否则 不加  原声js 默认就是加的 这是有区别的 -->
+        <p><button @click="add(2,$event)">add</button></p>
+        <p><btn @click.native="add(5,$event)"></btn></p>
+    </div>
+    <button onclick="app.add(10)"> 外部add</button>
+    <script type="text/javascript">
+        var btn = {
+            template:`<button>组件add</button>`
+        }
+        var app = new Vue({
+            // 作用域
+            el: "#app",
+            data: {
+                a:1
+            },
+            components:{
+                'btn':btn
+            },
+            //  num 传值
+            //  $event  就是js里的mouseevent 鼠标事件 不常用 
+            //  组件里的事件 绑定的时候需要@click.native = "xxx"
+            //  意思是访问构造器里的方法 否则访问不到 重要重要重要
+            //  外部原声js调用构造器内部方法 app.add() 当成对象调用就可以************
+            methods:{
+                add:function(num,event){
+                    if(num!= ''){
+                        this.a+=num;
+                    }else{
+                        this.a++;
+                    }
+                    console.log(event)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

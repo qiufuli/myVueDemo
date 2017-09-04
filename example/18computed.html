@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed 计算选项</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>computed 计算选项</h1>
+    <hr>
+    <div id="app">
+        <p>{{newPrice}}</p>
+        <ul>
+            <li v-for="item in reversNew">
+                {{item.title}}{{item.data}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var newList = [
+            { title: '阿斯达将啊啊离开家卡了教师的教案', data: '2017/9/1' },
+            { title: '请问U去哦I为U去哦I为U去', data: '2017/9/2' },
+            { title: '想看你慈爱好的发打算', data: '2017/9/3' },
+            { title: '却偏偏欺骗我蓬蓬裙为', data: '2017/9/4' }
+        ]
+        var app = new Vue({
+            el: "#app",
+            data: {
+                price: 100,
+                newList: newList
+            },
+            computed: {
+                newPrice: function () {
+                    return this.price = "￥" + this.price + '元';
+                },
+                reversNew: function () {
+                    return this.newList.reverse();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

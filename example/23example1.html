@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+    <h1>example methods</h1>
+    <hr>
+    <div id="app">
+        <!-- 数据绑定 -->
+        {{message}}
+    </div>
+    <script type="text/javascript">
+    //  声明的时候new Vue 大写
+        var app = new Vue({
+            // 作用域
+            el: "#app",
+            data: {
+                // 相当于$scope.message
+                message: "hello world"
+            },
+            //  挂载之前dom还没渲染 jq获取不到值 所以要放在挂载之后
+            mounted:function(){
+                $("#app").html("挂载之后能识别dom所以jq要放在挂载之后执行")
+            },
+            methods:{
+                add:function(){
+                    console.log("在构造器外部调用add")
+                }
+            }
+        });
+        app.add()
+    </script>
+</body>
+
+</html>

@@ -10,18 +10,28 @@
 </head>
 
 <body>
-    <h1>hello world</h1>
+    <h1>Component父子组件</h1>
     <hr>
     <div id="app">
         <panda></panda>
     </div>
     <script type="text/javascript">
+    // 子组件要在父组件上面声明才有效果
+    var qiu = {
+        template:`
+        <div style="color:orange">never give up</div> 
+        `
+    }
         var city = {
             template: `
             <div style="color:green">
             子组件放到父组件里(子组件在父组件上面声明)
+            <qiu></qiu>
             </div>
-             `
+             `,
+             components:{
+                 'qiu':qiu
+             }
         }
         var pandaComponent = {
             template: `<div style="color:red">

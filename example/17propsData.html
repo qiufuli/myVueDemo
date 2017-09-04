@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>propsData option</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>propsData option</h1>
+    <hr>
+    <div id="app">
+        <header></header>
+    </div>
+    <script type="text/javascript">
+        var header_a = Vue.extend({
+            template:`<p>{{message}}{{a}}</p>`,
+            data:function(){
+                return{
+                    message:"Hi, I'm here"
+                }
+            },
+            // 变量还是需要挂载的 在data外面 看好喽
+            props:['a']
+        })
+        //  propsData用在扩展里 在声明对象的时候穿进去 用的不多 
+        // 但存在必有道理 活学活用吧
+        new header_a({propsData:{a:1111111}}).$mount('header')
+    </script>
+</body>
+
+</html>

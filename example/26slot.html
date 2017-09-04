@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+        <h1>Slot content extend Demo</h1>
+        <hr>
+        <div id="app">
+            <qiu>
+                    <span slot="bolgUrl">{{qiuData.bolgUrl}}</span>    
+                    <span slot="netName">{{qiuData.netName}}</span>    
+                    <span slot="skill">{{qiuData.skill}}</span> 
+            </qiu>
+        </div>
+        <template id="tmp">
+            <!-- 坑 模板必须有个div包裹 -->
+            <div>
+                    <p>博客地址：<slot name="bolgUrl"></slot></p>
+                    <p>网名：<slot name="netName"></slot></p>
+                    <p>技术类型：<slot name="skill"></slot></p>
+                    
+            </div>
+        </template>
+    <script type="text/javascript">
+        var qiu = {
+            template:"#tmp"
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                qiuData:{
+                    bolgUrl:'http://jspang.com',
+                   netName:'技术胖',
+                   skill:'Web前端'
+                }
+            },
+            components:{
+                "qiu":qiu
+            }
+        })
+    </script>
+</body>
+
+</html>

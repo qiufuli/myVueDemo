@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>extend</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>extend</h1>
+    <hr>
+    <div id="app">
+        <!-- 数据绑定 -->
+        {{num}}
+        <p><button @click="add">add</button></p>
+    </div>
+    <script type="text/javascript">
+        var extendObj = {
+            updated:function(){
+                console.log("我是扩展的updated")
+            },
+            methods:{
+                add: function () {
+                    this.num++;
+                    console.log('我是扩展的方法')
+                }
+            }
+        }
+        //  声明的时候new Vue 大写
+        var app = new Vue({
+            // 作用域
+            el: "#app",
+            data: {
+                num: 1
+            },
+            methods: {
+                add: function () {
+                    this.num++;
+                    console.log('我是原声的方法')
+                }
+            },
+            updated:function(){
+                console.log("我是原声的updated")
+            },
+            extends:extendObj,
+            // delimiters改变数据绑定的格式 {{}}
+            delimiters:['${','}$']
+        });
+    </script>
+</body>
+
+</html>
